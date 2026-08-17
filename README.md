@@ -1,4 +1,4 @@
-# Day 21 — Research → Email Agent (LangGraph, human in the loop)
+# Research → Email Agent
 
 A LangGraph workflow that researches a topic, drafts an email about it, then
 **stops and waits for you** in the browser. You approve it or send it back for
