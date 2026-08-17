@@ -1,4 +1,4 @@
-# Day 21 — LangGraph Capstone
+# Research Agent
 
 Two LangGraph agents that share one set of building blocks:
 
@@ -14,8 +14,6 @@ Both use **Groq** for inference and **DuckDuckGo** for web search.
 ## Quick start
 
 ```bash
-cd day21
-
 # 1. Install everything into .venv (uv reads pyproject.toml)
 uv sync
 

@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 import resend
 
-from langgraph_capstone.config import get_settings
+from config import get_settings
 
 DRY_RUN_MESSAGE = "RESEND_API_KEY is not set - dry run, no email was delivered."
 

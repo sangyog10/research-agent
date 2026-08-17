@@ -9,17 +9,17 @@ from typing import Any, Literal
 
 from langgraph.types import interrupt
 
-from langgraph_capstone import console
-from langgraph_capstone.email_agent.parsing import DEFAULT_SUBJECT, parse_email_draft
-from langgraph_capstone.email_agent.prompts import (
+from . import console
+from email_agent.parsing import DEFAULT_SUBJECT, parse_email_draft
+from email_agent.prompts import (
     DRAFT_PROMPT,
     FACT_EXTRACTION_PROMPT,
     REVISION_PROMPT,
 )
-from langgraph_capstone.email_agent.sender import send_email
-from langgraph_capstone.email_agent.state import EmailAgentState
-from langgraph_capstone.llm import complete, lines_from
-from langgraph_capstone.search import SearchError, web_search
+from email_agent.sender import send_email
+from email_agent.state import EmailAgentState
+from llm import complete, lines_from
+from search import SearchError, web_search
 
 MAX_SEARCH_RESULTS = 5
 APPROVE_WORDS = frozenset({"approve", "approved", "yes", "y", "true", "ok"})

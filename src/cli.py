@@ -5,16 +5,16 @@ from __future__ import annotations
 import argparse
 from typing import Any
 
-from langgraph_capstone import console
-from langgraph_capstone.config import ConfigError, get_settings
-from langgraph_capstone.email_agent import (
+from . import console
+from config import ConfigError, get_settings
+from email_agent import (
     DEFAULT_MAX_REVISIONS,
     build_email_agent,
     is_waiting_for_human,
     resume_workflow,
     start_workflow,
 )
-from langgraph_capstone.llm import get_llm
+from llm import get_llm
 
 YES = {"y", "yes"}
 NO = {"n", "no"}

@@ -19,7 +19,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 
-from langgraph_capstone.email_agent.nodes import (
+from email_agent.nodes import (
     abort_node,
     draft_email_node,
     extract_facts_node,
@@ -29,7 +29,7 @@ from langgraph_capstone.email_agent.nodes import (
     revise_email_node,
     send_email_node,
 )
-from langgraph_capstone.email_agent.state import EmailAgentState
+from email_agent.state import EmailAgentState
 
 
 def build_email_agent(checkpointer: MemorySaver | None = None) -> CompiledStateGraph:

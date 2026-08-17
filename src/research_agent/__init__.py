@@ -1,8 +1,8 @@
 """Iterative research assistant graph (used by the Streamlit app)."""
 
-from langgraph_capstone.research_agent.graph import NODE_PROGRESS, build_research_agent
-from langgraph_capstone.research_agent.nodes import NODE_LABELS
-from langgraph_capstone.research_agent.state import (
+from research_agent.graph import NODE_PROGRESS, build_research_agent
+from research_agent.nodes import NODE_LABELS
+from research_agent.state import (
     DEFAULT_MAX_FINDINGS,
     DEFAULT_MAX_ITERATIONS,
     DEFAULT_QUALITY_THRESHOLD,

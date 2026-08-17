@@ -14,7 +14,7 @@ from __future__ import annotations
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 
-from langgraph_capstone.research_agent.nodes import (
+from research_agent.nodes import (
     analyzer_node,
     input_processor_node,
     question_generator_node,
@@ -22,7 +22,7 @@ from langgraph_capstone.research_agent.nodes import (
     search_tool_node,
     should_continue_research,
 )
-from langgraph_capstone.research_agent.state import ResearchState
+from research_agent.state import ResearchState
 
 # Rough progress weight per node, used to drive a progress bar in the UI.
 NODE_PROGRESS: dict[str, float] = {

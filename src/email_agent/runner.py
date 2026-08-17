@@ -8,7 +8,7 @@ from uuid import uuid4
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.types import Command
 
-from langgraph_capstone.email_agent.state import DEFAULT_MAX_REVISIONS, initial_state
+from email_agent.state import DEFAULT_MAX_REVISIONS, initial_state
 
 RunConfig = dict[str, Any]
 

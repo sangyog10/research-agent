@@ -10,15 +10,15 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Literal
 
-from langgraph_capstone.llm import complete, lines_from
-from langgraph_capstone.research_agent.prompts import (
+from llm import complete, lines_from
+from research_agent.prompts import (
     ANALYSIS_PROMPT,
     QUESTION_PROMPT,
     REPORT_PROMPT,
     TOPIC_REFINEMENT_PROMPT,
 )
-from langgraph_capstone.research_agent.state import ResearchState
-from langgraph_capstone.search import SearchError, web_search
+from research_agent.state import ResearchState
+from search import SearchError, web_search
 
 QUESTIONS_PER_ROUND = 3
 RESULTS_PER_QUESTION = 2

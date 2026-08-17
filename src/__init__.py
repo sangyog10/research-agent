@@ -6,7 +6,7 @@ Two agents share the same core building blocks:
 * :mod:`langgraph_capstone.research_agent` - iterative research assistant (Streamlit)
 """
 
-from langgraph_capstone.config import ConfigError, Settings, get_settings
+from config import ConfigError, Settings, get_settings
 
 __all__ = ["ConfigError", "Settings", "__version__", "get_settings"]
 

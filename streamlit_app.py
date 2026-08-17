@@ -9,6 +9,6 @@ resolve to itself instead of the real package.
 
 from __future__ import annotations
 
-from langgraph_capstone.ui import main
+from ui import main
 
 main()
