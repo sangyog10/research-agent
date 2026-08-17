@@ -1,0 +1,23 @@
+# Secrets
+.env
+opencode.json
+
+# uv / virtualenv
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Tooling caches
+.ruff_cache/
+.pytest_cache/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# macOS
+.DS_Store
