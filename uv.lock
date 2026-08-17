@@ -286,6 +286,37 @@ wheels = [
 ]
 
 [[package]]
+name = "day21-email-agent"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "ddgs" },
+    { name = "langchain-groq" },
+    { name = "langgraph" },
+    { name = "python-dotenv" },
+    { name = "resend" },
+    { name = "streamlit" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "ddgs", specifier = ">=9.0.0" },
+    { name = "langchain-groq", specifier = ">=0.3.0" },
+    { name = "langgraph", specifier = ">=0.3.0" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
+    { name = "resend", specifier = ">=2.4.0" },
+    { name = "streamlit", specifier = ">=1.40.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [{ name = "ruff", specifier = ">=0.8.0" }]
+
+[[package]]
 name = "ddgs"
 version = "9.15.0"
 source = { registry = "https://pypi.org/simple" }
@@ -585,39 +616,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/56/0d/c8e7ee98896659e1b
 wheels = [
     { url = "https://files.pythonhosted.org/packages/0a/7f/c5c30e4be99ff821029c7ac872a480676bb179c9f3df85ea3f38d13f86d4/langgraph-1.2.11-py3-none-any.whl", hash = "sha256:8bab70de7b2d00b5300fb289bcf38d8b241400f3184c1e95e8ce706fb0e8686b", size = 248854, upload-time = "2026-08-11T14:00:35.494Z" },
 ]
-
-[[package]]
-name = "langgraph-capstone"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "ddgs" },
-    { name = "langchain-core" },
-    { name = "langchain-groq" },
-    { name = "langgraph" },
-    { name = "python-dotenv" },
-    { name = "resend" },
-    { name = "streamlit" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "ddgs", specifier = ">=9.0.0" },
-    { name = "langchain-core", specifier = ">=0.3.0" },
-    { name = "langchain-groq", specifier = ">=0.3.0" },
-    { name = "langgraph", specifier = ">=0.3.0" },
-    { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "resend", specifier = ">=2.4.0" },
-    { name = "streamlit", specifier = ">=1.40.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [{ name = "ruff", specifier = ">=0.8.0" }]
 
 [[package]]
 name = "langgraph-checkpoint"

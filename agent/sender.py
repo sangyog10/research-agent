@@ -1,7 +1,6 @@
 """Email delivery through Resend.
 
-The rest of the agent never imports :mod:`resend` directly, so swapping the
-provider (SMTP, SendGrid, ...) only touches this module.
+Nothing else imports :mod:`resend`, so swapping providers only touches this file.
 """
 
 from __future__ import annotations
@@ -11,7 +10,7 @@ from dataclasses import dataclass
 
 import resend
 
-from config import get_settings
+from agent.config import get_settings
 
 DRY_RUN_MESSAGE = "RESEND_API_KEY is not set - dry run, no email was delivered."
 
@@ -26,7 +25,7 @@ class SendOutcome:
 
 
 def to_html(body: str) -> str:
-    """Convert a plain-text body into simple, escaped HTML paragraphs."""
+    """Convert a plain-text body into escaped HTML paragraphs."""
     paragraphs = [block.strip() for block in body.split("\n\n") if block.strip()]
     return "".join(
         "<p>" + html.escape(block).replace("\n", "<br />") + "</p>" for block in paragraphs
@@ -36,8 +35,8 @@ def to_html(body: str) -> str:
 def send_email(recipient: str, subject: str, body: str) -> SendOutcome:
     """Send one email.
 
-    Returns a :class:`SendOutcome` instead of raising, so the graph can record
-    the failure in state and still finish cleanly.
+    Returns an outcome instead of raising, so the graph can record the failure
+    in state and still finish cleanly.
     """
     settings = get_settings()
 
@@ -60,7 +59,7 @@ def send_email(recipient: str, subject: str, body: str) -> SendOutcome:
                 "text": body,
             }
         )
-    except Exception as exc:  # noqa: BLE001 - SDK raises provider-specific errors
+    except Exception as exc:  
         return SendOutcome(sent=False, error=f"{type(exc).__name__}: {exc}")
 
     return SendOutcome(sent=True)

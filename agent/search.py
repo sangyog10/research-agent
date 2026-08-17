@@ -1,8 +1,4 @@
-"""Shared DuckDuckGo web search helper.
-
-Both agents need "give me some sources for this query", so the scraping
-details, error handling and result formatting live here once.
-"""
+"""DuckDuckGo web search."""
 
 from __future__ import annotations
 
@@ -27,23 +23,12 @@ class SearchResult:
     url: str
 
     def as_source(self, index: int) -> str:
-        """Verbose, citation-style block used for fact extraction."""
+        """Citation-style block handed to the fact-extraction prompt."""
         return f"Source {index}\nTitle: {self.title}\nContent: {self.body}\nURL: {self.url}"
-
-    def as_snippet(self) -> str:
-        """Compact ``title: body`` form used when many results are summarised."""
-        return f"{self.title}: {self.body}".strip(": ")
 
 
 def web_search(query: str, max_results: int = DEFAULT_MAX_RESULTS) -> list[SearchResult]:
     """Run a text search and return normalised results.
-
-    Args:
-        query: The search query.
-        max_results: Upper bound on the number of hits to return.
-
-    Returns:
-        A list of :class:`SearchResult`, possibly empty.
 
     Raises:
         SearchError: if the backend raises (network error, rate limit, ...).

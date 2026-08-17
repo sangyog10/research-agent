@@ -27,22 +27,22 @@ def parse_email_draft(draft: str) -> tuple[str, str]:
     body_started = False
 
     for line in lines:
-        if not body_started:
-            subject_match = _SUBJECT_RE.match(line)
-            if subject_match:
-                # `or subject` keeps the first non-empty subject we saw.
-                subject = subject_match.group(1).strip() or subject
-                continue
-
-            body_match = _BODY_RE.match(line)
-            if body_match:
-                body_started = True
-                inline = body_match.group(1).strip()
-                if inline:
-                    body_parts.append(inline)
-                continue
-        else:
+        if body_started:
             body_parts.append(line)
+            continue
+
+        subject_match = _SUBJECT_RE.match(line)
+        if subject_match:
+            # Keeps the first non-empty subject we saw.
+            subject = subject_match.group(1).strip() or subject
+            continue
+
+        body_match = _BODY_RE.match(line)
+        if body_match:
+            body_started = True
+            inline = body_match.group(1).strip()
+            if inline:
+                body_parts.append(inline)
 
     if body_started:
         body = "\n".join(body_parts).strip()

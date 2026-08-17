@@ -1,7 +1,6 @@
 """Environment driven configuration.
 
-Every tunable value lives here so that no other module has to touch
-``os.environ`` directly.
+Every environment variable used by the project is read here and nowhere else.
 """
 
 from __future__ import annotations
@@ -12,13 +11,20 @@ from functools import lru_cache
 
 from dotenv import load_dotenv
 
-# Loads `.env` from the current working directory (or any parent), which makes
-# `uv run ...` work from the project root without extra setup.
+# Loads `.env` from the working directory, so `uv run streamlit run app.py`
+# picks up your keys without extra setup.
 load_dotenv()
 
 DEFAULT_MODEL = "openai/gpt-oss-20b"
 DEFAULT_SENDER = "onboarding@resend.dev"
 DEFAULT_TEMPERATURE = 0.3
+
+MISSING_KEY_HELP = (
+    "GROQ_API_KEY is not set.\n\n"
+    "1. Get a free key at https://console.groq.com/keys\n"
+    "2. `cp .env.example .env`\n"
+    "3. Add the key to `.env` and restart the app"
+)
 
 
 class ConfigError(RuntimeError):
@@ -48,23 +54,18 @@ class Settings:
 
     @property
     def llm_ready(self) -> bool:
-        """True when the LLM can be created."""
+        """True when the language model can be created."""
         return bool(self.groq_api_key)
 
     @property
     def email_ready(self) -> bool:
-        """True when emails can actually be delivered (otherwise: dry run)."""
+        """True when an approved email will really be delivered."""
         return bool(self.resend_api_key)
 
     def require_llm(self) -> str:
-        """Return the Groq API key or explain how to obtain one."""
+        """Return the Groq key, or explain how to get one."""
         if not self.groq_api_key:
-            raise ConfigError(
-                "GROQ_API_KEY is not set.\n"
-                "  1. Get a free key at https://console.groq.com/keys\n"
-                "  2. cp .env.example .env\n"
-                "  3. Add the key to .env"
-            )
+            raise ConfigError(MISSING_KEY_HELP)
         return self.groq_api_key
 
 

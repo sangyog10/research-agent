@@ -1,4 +1,4 @@
-"""Shared state definition for the email agent."""
+"""State carried through the graph."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ DEFAULT_MAX_REVISIONS = 3
 
 
 class EmailAgentState(TypedDict):
-    """State passed between every node of the email graph."""
+    """Every key is initialised up front so nodes can read them directly."""
 
     # Input
     topic: str
@@ -25,6 +25,7 @@ class EmailAgentState(TypedDict):
 
     # Human feedback
     feedback: str
+    feedback_history: list[str]
     approved: bool
 
     # Revision tracking
@@ -35,16 +36,16 @@ class EmailAgentState(TypedDict):
     email_sent: bool
     send_error: str
 
+    # Non-fatal problems worth showing in the UI
+    warnings: list[str]
+
 
 def initial_state(
     topic: str,
     recipient: str,
     max_revisions: int = DEFAULT_MAX_REVISIONS,
 ) -> EmailAgentState:
-    """Build a fully populated starting state.
-
-    Every key is initialised so that nodes can read them without ``.get()``.
-    """
+    """Build a fully populated starting state."""
     return EmailAgentState(
         topic=topic.strip(),
         recipient=recipient.strip(),
@@ -54,9 +55,11 @@ def initial_state(
         email_draft="",
         draft_history=[],
         feedback="",
+        feedback_history=[],
         approved=False,
         revision_count=0,
         max_revisions=max(0, max_revisions),
         email_sent=False,
         send_error="",
+        warnings=[],
     )

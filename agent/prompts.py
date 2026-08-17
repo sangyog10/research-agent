@@ -1,7 +1,6 @@
-"""Prompt templates for the email agent.
+"""Prompt templates.
 
-Kept separate from the nodes so prompts can be tweaked without touching the
-graph logic.
+Kept apart from the graph so wording can change without touching logic.
 """
 
 from __future__ import annotations
